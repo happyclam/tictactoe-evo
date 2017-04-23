@@ -242,11 +242,11 @@
         var result = "勝ち：" + win_count + "　負け：" + lose_count + "　引分：" + draw_count + "\n\r";
         var linkStr = "https://play.google.com/store/apps/details?id=io.github.happyclam"
         // window.plugins.socialsharing.share('進化する三目並べ（Tictactoe Evo） ' + linkStr + ' \n\r' + result + imgName + '\n\r', 'evolution', png, null);
-        var redirect_url = "https://twitter.com/intent/tweet?text=" + '進化する三目並べ（Tictactoe Evo） \n\r ' + result + "&url=" + linkStr + '&via=SappierBoy' + location.search
-        if (document.referrer) {
-            var referrer = "referrer=" + encodeURIComponent(document.referrer);
-            redirect_url = redirect_url + (location.search ? '&' : '?') + referrer;
-        }
+        var redirect_url = "https://twitter.com/intent/tweet?text=" + '進化する三目並べ（Tictactoe Evo） \n\r ' + result + "&url=" + linkStr + '&via=SappierBoy'
+        // if (document.referrer) {
+        //     var referrer = "referrer=" + encodeURIComponent(document.referrer);
+        //     redirect_url = redirect_url + (location.search ? '&' : '?') + referrer;
+        // }
         location.href = redirect_url;
     };
 
