@@ -1,0 +1,51 @@
+{
+
+"images": [
+    "spritesheet-0.png",
+    "spritesheet-1.png"
+],
+
+"frames": [
+    [1, 1, 738, 758, 0, -29, -16],
+    [741, 1, 767, 714, 0, -18, -19],
+    [1, 761, 696, 750, 0, -30, -20],
+    [1510, 1, 483, 763, 0, -76, -11],
+    [1, 1513, 698, 351, 0, -20, -104],
+    [741, 717, 745, 587, 0, -27, -32],
+    [701, 1306, 643, 560, 0, -24, -11],
+    [1488, 766, 490, 320, 0, -6, -31],
+    [1346, 1306, 202, 478, 0, -66, -6],
+    [1550, 1088, 380, 353, 0, -14, -30],
+    [1550, 1443, 382, 336, 0, -7, -11],
+    [1, 1, 282, 430, 1, -25, -9],
+    [1, 433, 387, 301, 1, -6, -28],
+    [285, 1, 284, 377, 1, -47, -9],
+    [571, 1, 337, 371, 1, -38, -13],
+    [390, 380, 377, 313, 1, -13, -14]
+],
+
+"animations": {
+    "kurage": { "frames": [0] },
+    "pirorikin": { "frames": [1] },
+    "unagi": { "frames": [2] },
+    "saru": { "frames": [3] },
+    "namako": { "frames": [4] },
+    "tako": { "frames": [5] },
+    "sakana": { "frames": [6] },
+    "ai": { "frames": [7] },
+    "hito": { "frames": [8] },
+    "isoginchaku": { "frames": [9] },
+    "kabi": { "frames": [10] },
+    "genjin": { "frames": [11] },
+    "nezumi": { "frames": [12] },
+    "hoya": { "frames": [13] },
+    "kaeru": { "frames": [14] },
+    "kinoko": { "frames": [15] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:648eed4a17ca1e4d35ee5f1e68e67389:359dbfdf27c261700ac2fe3397d56ee5:891aeea45958f21e96a4508ee113e1b2$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}

@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src *; img-src * data:; frame-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' *;">
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"> </script>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="./css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/mine.css" />
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"> </script>
+    <script src="js/easeljs-0.8.2.min.js"></script>
+	<!-- <script src="js/preloadjs-0.6.2.min.js"></script> -->
+    <script src="js/tweenjs-0.6.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+    <script type="text/javascript" src="js/fastclick.js"> </script>
+    <script type="text/javascript" src="tictactoe.js"> </script>
+    <script>
+    var stage, imgData, frame, filename, localIndex, imgName;
+    $(function() {
+        $("#canvasImage").swipe( {
+            swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+                var dec, err, error, item, imgIndex;
+                try {
+                    dec = localStorage.getItem("SpriteSheet");
+                    item = decrypt(dec.split(","), "fancySerialNo");
+                    imgIndex = parseInt(item);
+                } catch (error) {
+                    err = error;
+                    imgIndex = 0;
+                }
+                if (typeof localIndex === "undefined" || localIndex === null){
+                    localIndex = imgIndex;
+                }
+                switch (direction) {
+                case "left":
+                case "up":
+                    if (localIndex > 0){
+                        localIndex -= 1;
+                    }
+                    break;
+                case "right":
+                case "down":
+                    if (localIndex < imgIndex){
+                        localIndex += 1;
+                    }
+                    break;
+                }
+                stage = new createjs.Stage('canvasImage');
+                stage.clear();
+                imgData = new Image();
+                imgData.onload = handleImageLoad;
+                setImageData(localIndex);
+                imgData.src = filename;
+                document.getElementById("spanName").textContent = imgName;
+                document.getElementById("spanPercentage").textContent = "";
+                document.getElementById("divTwitter").style.visibility = "hidden";
+            }
+        });
+    });
+    function setImageData(idx) {
+        switch (idx) {
+        case 0:
+            frame = [741, 1, 767, 714];
+            filename = "./img/spritesheet-0.png";
+            imgName = "ピロリ菌（単細胞生物）";
+            break;
+        case 1:
+            frame = [1550, 1443, 382, 336];
+            filename = "./img/spritesheet-0.png";
+            imgName = "カビ（菌類）";
+            break;
+        case 2:
+            frame = [390, 380, 377, 313];
+            filename = "./img/spritesheet-1.png";
+            imgName = "トリュフ（菌類）";
+            break;
+        case 3:
+            frame = [1, 1, 738, 758];
+            filename = "./img/spritesheet-0.png";
+            imgName = "クラゲ（有櫛動物）";
+            break;
+        case 4:
+            frame = [1550, 1088, 380, 353];
+            filename = "./img/spritesheet-0.png";
+            imgName = "イソギンチャク（刺胞動物）";
+            break;
+        case 5:
+            frame = [741, 717, 745, 587];
+            filename = "./img/spritesheet-0.png";
+            imgName = "タコ（軟体動物）";
+            break;
+        case 6:
+            frame = [1, 1513, 698, 351];
+            filename = "./img/spritesheet-0.png";
+            imgName = "ナマコ（棘皮動物）";
+            break;
+        case 7:
+            frame = [285, 1, 284, 377];
+            filename = "./img/spritesheet-1.png";
+            imgName = "ホヤ（脊索動物）";
+            break;
+        case 8:
+            frame = [1, 761, 696, 750];
+            filename = "./img/spritesheet-0.png";
+            imgName = "ウナギ（円口類）";
+            break;
+        case 9:
+            frame = [701, 1306, 643, 560];
+            filename = "./img/spritesheet-0.png";
+            imgName = "ジンベイザメ（軟骨魚類）";
+            break;
+        case 10:
+            frame = [571, 1, 337, 371];
+            filename = "./img/spritesheet-1.png";
+            imgName = "カエル（両生類）";
+            break;
+        case 11:
+            frame = [1, 433, 387, 301];
+            filename = "./img/spritesheet-1.png";
+            imgName = "ネズミ（哺乳類）";
+            break;
+        case 12:
+            frame = [1510, 1, 483, 763];
+            filename = "./img/spritesheet-0.png";
+            imgName = "猿（哺乳類）";
+            break;
+        case 13:
+            frame = [1, 1, 282, 430];
+            filename = "./img/spritesheet-1.png";
+            imgName = "原人（哺乳類）";
+            break;
+        case 14:
+            frame = [1346, 1306, 202, 478];
+            filename = "./img/spritesheet-0.png";
+            imgName = "人（哺乳類）";
+            break;
+        case 15:
+            frame = [1488, 766, 490, 320];
+            filename = "./img/spritesheet-0.png";
+            imgName = "人工知能（AI）";
+            break;
+        default:
+            frame = [741, 1, 767, 714];
+            filename = "./img/spritesheet-0.png";
+            imgName = "ピロリ菌（単細胞生物）";
+        }
+    };
+    function handleImageLoad() {
+        var data = {
+            images: [imgData],
+            frames: [
+	            frame
+            ]
+        }
+        var orgX = $('#canvasImage').width();
+        var orgY = $('#canvasImage').height();
+        var limitX = orgX / frame[2];
+        var limitY = orgY / frame[3];
+        var spriteSheet = new createjs.SpriteSheet(data);
+
+        var sprite = new createjs.Sprite(spriteSheet, 0);
+        sprite.x = 0;  sprite.y = 0; sprite.scaleX = 0; sprite.scaleY = 0;
+        // stage.removeAllChildren();
+        // stage.update();
+        stage.addChild(sprite);
+
+        createjs.Ticker.setFPS(60);
+        createjs.Ticker.addEventListener('tick', tickHandler);
+
+        // createjs.Tween.get(bitmap).to({alpha: 1, scaleX: limitX, scaleY: limitY}, 2000);
+        createjs.Tween.get(sprite).to({alpha: 1, scaleX: limitX, scaleY: limitY}, 2000);
+    };
+
+    function tickHandler(event) {
+        stage.update();
+    };
+
+    function decrypt(encrypted, key) {
+        var dec, decrypted, i, j, ref;
+        decrypted = "";
+        for (i = j = 0, ref = encrypted.length - 1; 0 <= ref ? j <= ref : j >= ref; i = 0 <= ref ? ++j : --j) {
+            dec = encrypted[i] ^ key.charCodeAt(i);
+            decrypted += String.fromCharCode(dec);
+        }
+        return decrypted;
+    };
+
+    function init() {
+        var dec, err, error, item, imgIndex;
+        try {
+            dec = localStorage.getItem("SpriteSheet");
+            item = decrypt(dec.split(","), "fancySerialNo");
+            imgIndex = parseInt(item);
+        } catch (error) {
+            err = error;
+            imgIndex = 0;
+        }
+        localIndex = imgIndex;
+        stage = new createjs.Stage('canvasImage');
+        stage.clear();
+        var bg = new createjs.Shape();
+        bg.graphics.beginFill("white").drawRect(0, 0, $('#canvasImage').width(), $('#canvasImage').height());
+        stage.addChild(bg);
+        imgData = new Image();
+        imgData.onload = handleImageLoad;
+        setImageData(imgIndex);
+        imgData.src = filename;
+        document.getElementById("spanName").textContent = imgName;
+        document.getElementById("divTwitter").style.visibility = "visible";
+    };
+
+    function twitterShare(){
+        var win_count = document.getElementById("spanWin").innerHTML;
+        var lose_count = document.getElementById("spanLose").innerHTML;
+        var draw_count = document.getElementById("spanDraw").innerHTML;
+        win_count = (isNaN(win_count) || !win_count) ? "0" : win_count;
+        lose_count = (isNaN(lose_count) || !lose_count) ? "0" : lose_count;
+        draw_count = (isNaN(draw_count) || !draw_count) ? "0" : draw_count;
+        // var png = document.getElementById("canvasImage").toDataURL();
+        var result = "勝ち：" + win_count + "　負け：" + lose_count + "　引分：" + draw_count + "\n\r";
+        var linkStr = "https://play.google.com/store/apps/details?id=io.github.happyclam"
+        // window.plugins.socialsharing.share('進化する三目並べ（Tictactoe Evo） ' + linkStr + ' \n\r' + result + imgName + '\n\r', 'evolution', png, null);
+        var redirect_url = "https://twitter.com/intent/tweet?text=" + '進化する三目並べ（Tictactoe Evo） \n\r ' + result + "&url=" + linkStr + '&via=SappierBoy' + location.search
+        if (document.referrer) {
+            var referrer = "referrer=" + encodeURIComponent(document.referrer);
+            redirect_url = redirect_url + (location.search ? '&' : '?') + referrer;
+        }
+        location.href = redirect_url;
+    };
+
+    </script>
+    <title>進化する三目並べ（Tictactoe Evo）</title>
+</head>
+<body>
+<div id="home" data-role="page" data-fullscreen="true">
+  <div data-role="header" data-position="fixed">
+    <h1 id="title">進化する三目並べ</h1>
+    <a href="#win_menu" class="ui-btn ui-btn-inline ui-icon-gear ui-btn-right ui-btn-icon-notext">設定</a>
+  </div>
+  <div data-role="content">
+    <label id="trees" style="display: none;"><progress id="progressbar" value="0" max="100"></progress><span id="spanCount"></span>%</label>
+    <canvas id="canvasMain" style="display:block; margin:0 auto;"></canvas>
+    <form>
+    <p>
+      <span id="spanStatus" style="color: red;"></span>
+      <input id="btnStart" type="button" value="Start!">
+    </p>
+    </form>
+  </div>
+  <div data-role="footer" data-id="common-footer" class="footer-copyright">
+    <a href="http://happyclam.github.io">&copy;2016 happyclam.github.io</a>
+  </div>
+</div>
+<div data-role="page" id="win_menu" data-fullscreen="true">
+  <div data-role="header" data-position="fixed">
+    <h1 id="title">メニュー</h1>
+    <a id="aReturn" href="#home" class="ui-btn ui-icon-arrow-u ui-btn-icon-notext ui-btn-right" data-role="button"></a>
+    <!-- <button class="ui-btn ui-icon-heart ui-btn-icon-notext ui-btn-left" data-role="button" onclick="javascript:twitterShare();">Twitter</button> -->
+  </div>
+    <div data-role="content" style="overflow: auto; -webkit-overflow-scrolling: touch;">
+    <div id="menu_frame" data-role="collapsible-set">
+      <div data-role="collapsible" data-theme="b" data-collapsed="false" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+        <h3>対戦成績</h3>
+        <ul id="listRecord" data-role="listview">
+          <li>勝ち：<span id="spanWin" class="ui-li-count">0</span></li>
+          <li>負け：<span id="spanLose" class="ui-li-count">0</span></li>
+          <li>引分：<span id="spanDraw" class="ui-li-count">0</span></li>
+        </ul>
+      </div>
+      <div data-role="collapsible" data-theme="b" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+        <H3>進化度合い</h3>
+        <div>
+          <fieldset class="ui-grid-d">
+            <div class="ui-block-a ui-block-span4">
+              <button id="btnStatistics" style="margin-left: 5px;" class="ui-btn ui-corner-all" onclick="javascript:init();">学習データを集計する</button>
+            </div>
+            <div id="divTwitter" class="ui-block-e" style="visibility: hidden;">
+              <button style="margin: 15px 15px 0px;" class="ui-btn ui-icon-heart ui-btn-icon-notext ui-corner-all ui-btn-b" data-role="button" onclick="javascript:twitterShare();">Twitter</button>
+            </div>
+          </fieldset>
+          <div>
+            <span id="spanName"></span>
+            <span id="spanPercentage"></span>
+          </div>
+          <div><canvas id="canvasImage" style="display:block; margin:0 auto;"></canvas></div>
+        </div>
+      </div>
+      <div data-role="collapsible" data-theme="b" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+        <h3>「進化度合い」について</h3>
+        <p>　進化度合いは「ピロリ菌」から「人」までの１５段階で表現しています、対戦相手が強ければ強いほど学習効率が上がり、それだけ速く進化しますので、お子様と競ってみるのも面白いかもしれません。但し、「人」まで進化させるには相当な忍耐が必要になります。速く進化させるコツとしては、同じ勝ち方を繰り返すのではなく、なるべくいろんな手順の勝ち方をすること（例えば初手に真ん中以外のところを選ぶ）ですが、それを意識するあまりうっかり負けてしまうとわずかですが学習効率は下がります。<br />
+          　生物の名前の横に表示されている数値は、相手が勝つ手をどの程度阻止することが出来るかを現時点の学習データから計算した数値で、勝率とは関係ありません。おおよその学習進度の目安にはなりますが正確なものではなく、１００％になることもありません。「人」まで進化すると数値の変化はほとんど無くなり、最終的には１０００回に１回しか負けない程度まで強くなります。<br />
+        </p>
+      </div>
+      <div data-role="collapsible" data-theme="b" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+        <h3>「進化する三目並べ」について</h3>
+        <p>　対戦を重ねる度に学習して徐々に強くなる三目並べ（<span class="menu-comment">Tic-tac-toe</span>）プログラムです。先手の時と後手の時の学習度合いに大きな差が生じることを防ぐために<span class="menu-comment-attention">先手×・後手○はソフトがランダムに決める仕様にしています。</span><br />　オセロや将棋のプログラムがAI（人工知能）と呼ばれることがありますが、オセロや将棋のプログラムでAIと呼ばれているものの多くは、先読み機能と局面の評価関数を使い、コンピュータの計算能力をフルに利用して最善の手を選ぶ手法が採られています。知能というよりは力任せの計算力にものを言わせたやり方です。本プログラム（<span class="menu-comment">TictactoeEvo</span>「進化する三目並べ」）は評価関数を使わずにサイコロを振るような感じで指し手を決めます。そして対戦終了時に、勝てば報酬を与えて負ければ罰を与える方法で学習データを蓄積し、徐々に最善手が選ばれる確率が上がるようにしていく<span class="menu-comment-attention">機械学習（Machine Learning）</span>という手法を使っています。強くなっていく仕組みに興味ある方は<a href="http://happyclam.github.io/project/2016-09-19/tictactoe_evo">ブログ記事</a>を参照してください。
+        </p>
+        <p>　プログラム内で使用されているイラストは<a href="http://www.irasutoya.com">「いらすとや」様</a>のものを利用させていただきました。
+        </p>
+      </div>
+    </div>
+  </div>
+  <div data-role="footer" data-id="common-footer" class="footer-copyright">
+    <a href="http://happyclam.github.io">&copy;2016 happyclam.github.io</a>
+  </div>
+</div>
+</body>
+</html>
