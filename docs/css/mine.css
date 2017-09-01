@@ -49,3 +49,7 @@ img {
 .ui-grid-c > .ui-block-span3 {
   width: 75%;
 }
+
+.ui-grid-c > .ui-block-a {
+    width: 160px;
+}
