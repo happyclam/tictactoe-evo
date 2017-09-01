@@ -43,6 +43,9 @@ img {
   width: 80%;
 }
 
-.ui-grid-a > .ui-block-a {
-    width: 300px;
+.ui-grid-c > .ui-block-span2 {
+  width: 66.6666%;
+}
+.ui-grid-c > .ui-block-span3 {
+  width: 75%;
 }
